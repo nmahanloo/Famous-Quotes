@@ -1,0 +1,69 @@
+<%- include("partials/editAuthor_header.ejs") %>
+  <body>
+    <div id="content">
+      <div id="menu">
+        <div id="blank"></div>
+        <a class="menu-item" href="/">Home</a><br>
+        <a class="menu-item" href="/author/new">Add Authors</a><br>
+        <a class="menu-item" href="/quote/new">Add Quotes</a><br>
+        <a class="menu-item" href="/quotes">List Quotes</a>
+      </div>
+      <div id="context">
+        <div id="page-title">
+          <h1 id="title">Updating Author Data</h1>
+        </div>
+        <form class="forms" method="POST" action="/author/edit">
+          <input type="hidden" name="authorId" value="<%=authorInfo[0].authorId%>">
+          <span class="item-title">First Name:</span>
+          <input type="text" name="fName" class="names" value="<%=authorInfo[0].firstName%>">
+          <br>
+          <span class="item-title">Last Name:</span>
+          <input type="text" name="lName" class="names" value="<%=authorInfo[0].lastName%>">
+          <br>
+          <span class="item-title">Sex:</span>  
+          <input type="radio" name="sex" value="M" 
+          <% if (authorInfo[0].sex == "M") { %>
+            checked 
+          <% } %>
+          > Male
+          <input type="radio" name="sex" value="F" 
+          <% if (authorInfo[0].sex == "F") { %>
+            checked 
+          <% } %>
+          > Female
+          <br>
+          <span class="item-title">Date of Birth:</span>
+          <input type="date" name="dob"  value="<%=authorInfo[0].dobISO%>">
+          <br>
+          <span class="item-title">Date of Death:</span>
+          <input type="date" name="dod"  value="<%=authorInfo[0].dodISO%>">
+          <br>
+          <span class="item-title">Country:</span>
+          <input type="text" name="country" id="country" value="<%=authorInfo[0].country%>">
+          <br>
+          <span class="item-title">Portrait URL:</span>
+          <input type="text" name="portrait" id="portrait" value="<%=authorInfo[0].portrait%>">
+          <br>
+          <span class="item-title">Profession:</span>
+          <input type="text" name="profession" id="profession" value="<%=authorInfo[0].profession%>">
+          <br>
+          <span class="item-title">Biography:</span>
+          <br>
+          <textarea type="text" cols="40" rows="5" maxlength="500" name="biography" id="biography"><%=authorInfo[0].biography%></textarea>
+          <br>
+          <button id="edit-button">Update Author</button>
+        </form>
+        <% if (typeof message != "undefined") { %>
+          <div id="process-message"><%= message %></div><br>
+        <% } %>
+        <form id="back" action="/">
+          <button id="back-button">Back</button>
+        </form>
+        <span>
+          <%- include("partials/footer.ejs") %>
+        </span>
+      </div>
+      <div class="border"></div>
+    </div>
+  </body>
+</html>

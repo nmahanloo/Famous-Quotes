@@ -1,0 +1,44 @@
+<%- include("partials/authorList_header.ejs") %>
+  <body>
+    <div id="content">
+      <div id="menu">
+        <div id="blank"></div>
+        <a class="menu-item" href="/">Home</a><br>
+        <a class="menu-item" href="/author/new">Add Authors</a><br>
+        <a class="menu-item" href="/quote/new">Add Quotes</a><br>
+        <a class="menu-item" href="/quotes">List Quotes</a>
+      </div>
+      <div id="context">
+        <div id="page-title">
+          <h1 id="title">Update/Delete Authors</h1>
+        </div>
+        <div class="lists">
+          <% for (i=0; i < authors.length; i++) { %>
+            <div id="modification">
+              <div class="word-divider">
+                <a id="edit-record" href="/author/edit?authorId=<%=authors[i].authorId%>">UPDATE</a>
+              </div>
+              <div class="word-divider">
+                <a id="delete-record" href="/author/delete?authorId=<%=authors[i].authorId%>">DELETE</a>
+              </div>
+              &nbsp;&nbsp;
+              <div id="list-names">
+                <span id="record">
+                  <%=authors[i].firstName%> <%=authors[i].lastName%>
+                </span>
+              </div>
+            </div>
+            <br>
+          <% } %>
+        </div>
+        <form id="back" action="/">
+          <button id="back-button">Back</button>
+        </form>
+        <span>
+          <%- include("partials/footer.ejs") %>
+        </span>
+      </div>
+      <div class="border"></div>
+    </div>
+  </body>
+</html>

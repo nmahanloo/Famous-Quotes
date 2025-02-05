@@ -1,0 +1,61 @@
+<%- include("partials/newQuote_header.ejs") %>
+  <body>
+    <div id="content">
+      <div id="menu">
+        <div id="blank"></div>
+        <a class="menu-item" href="/">Home</a><br>
+        <a class="menu-item" href="/author/new">Add Authors</a><br>
+        <a class="menu-item" href="/authors">List Authors </a><br>
+        <a class="menu-item" href="/quotes">List Quotes</a>
+      </div>
+      <div id=context>
+        <div id="page-title">
+          <h1 id="title">Adding a new Quote</h1>
+        </div>
+        <form class="forms" method="POST" action="/quote/new">
+          <span class="item-title">Author:</span>
+          <select id="author" name="author">
+            <% if (typeof authors != "undefined") { %>
+              <% for (author of authors) { %>
+                <option value="<%= author.authorId %>">
+                  <%= author.firstName %> <%= author.lastName %>
+                </option>
+              <% } %>   
+            <% } %>
+          </select>
+          <br>
+          <span class="item-title">Category:</span>
+          <input list="category" name="categoryInput" id="categoryInput" autocomplete="off">
+          <datalist id="category" name="category">
+            <% if (typeof categories != "undefined") { %>
+              <% for (category of categories) { %>
+                <option value="<%= category.category %>">
+                  <%= category.category %>
+                </option>
+              <% } %>   
+            <% } %>
+          </datalist>
+          <br>
+          <span class="item-title">Quote:</span>
+          <br>
+          <textarea type="text" cols="40" rows="5" maxlength="200" id="quote" name="quote"></textarea>
+          <br>
+          <span class="item-title">Likes:</span>
+          <input type="number" id="likes" name="likes">
+          <br>
+          <button id="add-button">Add Quote</button>
+        </form>
+        <% if (typeof message != "undefined") { %>
+          <div id="process-message"><%= message %></div><br>
+        <% } %>
+        <form id="back" action="/">
+          <button id="back-button">Back</button>
+        </form>
+        <span>
+          <%- include("partials/footer.ejs") %>
+        </span>
+      </div>
+      <div class="border"></div>
+    </div>
+  </body>
+</html>

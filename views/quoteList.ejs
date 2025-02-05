@@ -1,0 +1,50 @@
+<%- include("partials/quoteList_header.ejs") %>
+  <body>
+    <div id="content">
+      <div id="menu">
+        <div id="blank"></div>
+        <a class="menu-item" href="/">Home</a><br>
+        <a class="menu-item" href="/author/new">Add Authors</a><br>
+        <a class="menu-item" href="/quote/new">Add Quotes</a><br>
+        <a class="menu-item" href="/authors">List Authors</a>
+      </div>
+      <div id="context">
+        <div id="page-title">
+          <h1 id="title">Update/Delete Quotes</h1>
+        </div>
+        <div class="lists">
+          <% for (i=0; i < quotes.length; i++) { %>
+            <div id="modification">
+              <div class="word-divider">
+                <a id="edit-record" href="/quote/edit?quoteId=<%=quotes[i].quoteId%>">UPDATE</a>
+              </div>
+              <div class="word-divider">
+                <a id="delete-record" href="/quote/delete?quoteId=<%=quotes[i].quoteId%>">DELETE</a>
+              </div>
+            </div>
+            <div id="vertical-divider"></div>
+            <div id="quote-property">
+              <span id="record">
+                <%=quotes[i].quote%>
+              </span>
+              <br>
+              <span id="quotes-author"><%=quotes[i].firstName%> <%=quotes[i].lastName%></span>
+              <br>
+              <span id="quotes-category">Category: <%=quotes[i].category%></span>
+              <br>
+              <span id="quotes-likes">Likes: <%=quotes[i].likes%></span>
+            </div>
+            <br/>
+          <% } %>
+        </div>
+        <form id="back" action="/">
+          <button id="back-button">Back</button>
+        </form>
+        <span>
+          <%- include("partials/footer.ejs") %>
+        </span>
+      </div>
+      <div class="border"></div>
+    </div>
+  </body>
+</html>

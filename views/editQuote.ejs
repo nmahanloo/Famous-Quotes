@@ -1,0 +1,73 @@
+<%- include("partials/editQuote_header.ejs") %>
+  <body>
+    <div id="content">
+      <div id="menu">
+        <div id="blank"></div>
+        <a class="menu-item" href="/">Home</a><br>
+        <a class="menu-item" href="/author/new">Add Authors</a><br>
+        <a class="menu-item" href="/quote/new">Add Quotes</a><br>
+        <a class="menu-item" href="/authors">List Authors</a>
+      </div>
+      <div id="context">
+        <div id="page-title">
+          <h1 id="title">Updating Quote Data</h1>
+        </div>
+        <form class="forms" method="POST" action="/quote/edit">
+          <input type="hidden" name="quoteId" value="<%=quoteInfo[0].quoteId%>">
+          <span class="item-title">Author:</span>
+          <select id="author" name="author">
+            <% if (typeof authors != "undefined") { %>
+              <% for (author of authors) { %>
+                <% if (author.authorId == quoteInfo[0].authorId) { %>
+                  <option value="<%= author.authorId %>" selected>
+                    <%= author.firstName %> <%= author.lastName %>
+                  </option>
+                <% } else { %>
+                  <option value="<%= author.authorId %>">
+                    <%= author.firstName %> <%= author.lastName %>
+                  </option>
+                <% } %>
+              <% } %>   
+            <% } %>
+          </select>
+          <br>
+          <span class="item-title">Quote:</span>
+          <br>
+          <textarea type="text" cols="40" rows="5" maxlength="200" name="quote" id="quote"><%=quoteInfo[0].quote%></textarea>
+          <br>
+          <span class="item-title">Category:</span>
+          <select id="category" name="category">
+            <% if (typeof categories != "undefined") { %>
+              <% for (category of categories) { %>
+                <% if (category.category == quoteInfo[0].category) { %>
+                  <option value="<%= category.category %>" selected>
+                      <%= category.category %>
+                  </option>
+                <% } else { %>
+                  <option value="<%= category.category %>">
+                    <%= category.category %>
+                  </option>
+                <% } %>    
+              <% } %>   
+            <% } %>
+          </select>
+          <br>
+          <span class="item-title">Likes:</span>
+          <input type="number" name="likes" id="likes" value="<%=quoteInfo[0].likes%>">
+          <br>
+          <button id="edit-button">Update Quote</button>
+        </form>
+        <% if (typeof message != "undefined") { %>
+          <div id="process-message"><%= message %></div><br>
+        <% } %>
+        <form id="back" action="/">
+          <button id="back-button">Back</button>
+        </form><br>
+        <span>
+          <%- include("partials/footer.ejs") %>
+        </span>
+      </div>
+      <div class="border"></div>
+    </div>
+  </body>
+</html>

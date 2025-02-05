@@ -1,0 +1,30 @@
+<%- include("partials/index_header.ejs") %>
+  <body>
+    <div id="content">
+      <div class="border"></div>
+      <div id="index-context">
+        <div id="index-page-title">
+          <h1 id="title">Famous Quotes - Admin Section</h1>
+        </div>
+        <div id="index">
+          <form action="/author/new">
+            <button class="index-item">Add Authors</button>
+          </form><br>
+          <form action="/quote/new">
+            <button class="index-item">Add Quotes</button>
+          </form><br>
+          <form action="/authors">
+            <button class="index-item">List Authors</button>
+          </form><br>
+          <form action="/quotes">
+            <button class="index-item">List Quotes</button>
+          </form>
+        </div>
+        <span>
+          <%- include("partials/footer.ejs") %>
+        </span>
+      </div>
+      <div class="border"></div>
+    </div>
+  </body>
+</html>
